@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta charset="utf-8"/>
+    <title>儿童学习平台</title>
+<script src="/master/assets/commonjs/manageuserbase.js"></script>
+</head>
+
+<body class="no-skin">
+<div id="navbar" class="navbar navbar-default          ace-save-state">
+
+</div>
+
+<div class="main-container ace-save-state" id="main-container">
+    <script type="text/javascript">
+        try {
+            ace.settings.loadState('main-container')
+        } catch (e) {
+        }
+    </script>
+    <div id="sidebar" class="sidebar                  responsive                    ace-save-state">
+
+    </div>
+
+
+    <div class="main-content">
+        <div class="main-content-inner">
+
+
+            <div class="page-content">
+                <div class="ace-settings-container" id="ace-settings-container">
+
+                </div>
+
+                <div class="page-header">
+                    <h1>
+                        用户管理
+                        <small>
+                            <i class="ace-icon fa fa-angle-double-right"></i>
+                            修改用户信息
+                        </small>
+                    </h1>
+                </div><!-- /.page-header -->
+
+
+                <div style="height: 15px"></div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- PAGE CONTENT BEGINS -->
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="tabbable">
+
+
+                                    <div class="tab-content no-border no-padding">
+                                        <div id="inbox" class="tab-pane in active">
+                                            <div class="message-container">
+
+                                                <div class="message-list-container">
+                                                    <div class="message-list" id="message-list">
+                                                        <div class="message-item message-unread" style="width: auto">
+
+                                                            <!--<input readonly="readonly" type="text" class="col-sm-1 control-label no-padding-right" class="sender" value="用户名" ></input>-->
+                                                            <span class="col-sm-2 control-label no-padding-right" >用户名</span>
+                                                            <span class="col-sm-2 control-label no-padding-right" >姓名</span>
+                                                            <span class="col-sm-2 control-label no-padding-right" >密码</span>
+                                                            <span class="col-sm-2 control-label no-padding-right" >备注</span>
+
+                                                            <span class="summary">
+
+                                                                      <button class="btn btn-xs btn-info" onclick="modifyUser()">
+																           <i class="ace-icon fa fa-pencil bigger-120"></i>
+															          </button>
+																	  <button class="btn btn-xs btn-success" onclick="submitUser()">
+																           <i class="ace-icon fa fa-check bigger-120"></i>
+																	  </button>
+
+															</span>
+                                                        </div>
+                                                        <div id="userlist">
+                                                        <div class="message-item">
+
+                                                            <span class="col-sm-2 control-label no-padding-right" id="name1">张三 </span>
+                                                            <span class="col-sm-2 control-label no-padding-right" id="tel1">123 </span>
+                                                            <span class="col-sm-2 control-label no-padding-right" id="pas1">pas </span>
+                                                            <span class="col-sm-2 control-label no-padding-right" id="remark1">备注1 </span>
+
+                                                            <span class="summary">
+                                                                      <button class="btn btn-xs btn-info" onclick="modifyUser('1')">
+																           <i class="ace-icon fa fa-pencil bigger-120"></i>
+															          </button>
+																	  <button class="btn btn-xs btn-success" onclick="submitUser('1')">
+																           <i class="ace-icon fa fa-check bigger-120"></i>
+																	  </button>
+															</span>
+
+                                                        </div>
+
+                                                        <div class="message-item">
+
+                                                            <span class="col-sm-2 control-label no-padding-right" >音频二 </span>
+                                                            <span class="col-sm-2 control-label no-padding-right" >音频二 </span>
+                                                            <span class="col-sm-2 control-label no-padding-right" >音频二 </span>
+                                                            <span class="col-sm-2 control-label no-padding-right" >音频二 </span>
+
+                                                            <span class="summary" style="width: auto" >
+                                                            <button class="btn btn-xs btn-info" onclick="modifyUser()">
+                                                            <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                                            </button>
+                                                            <button class="btn btn-xs btn-success" onclick="submitUser()">
+                                                            <i class="ace-icon fa fa-check bigger-120"></i>
+                                                            </button>
+															</span>
+
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="message-footer clearfix">
+
+
+                                                    <div class="pull-left" id="totalNum">共123个用户</div>
+
+                                                    <div class="pull-left" id="nbsp"> &nbsp; </div>
+
+                                                    <div class="pull-right">
+                                                        <div class="inline middle" id="showPage"> 共16，当前1</div>
+
+                                                        &nbsp; &nbsp;
+                                                        <ul class="pagination middle">
+                                                            <!-- first page -->
+                                                            <!--<li class="disabled">-->
+                                                            <li>
+                                                                <a>
+                                                                    <i class="ace-icon fa fa-step-backward middle"
+                                                                       onclick="pageChange(0)"></i>
+                                                                </a>
+                                                            </li>
+
+                                                            <!-- previous page -->
+                                                            <li>
+                                                                <a>
+                                                                    <i class="ace-icon fa fa-caret-left bigger-140 middle"
+                                                                       onclick="pageChange(1)"></i>
+                                                                </a>
+                                                            </li>
+
+                                                            <!-- user input -->
+                                                            <li>
+																		<span>
+																			<input value="1" maxlength="3" type="number"
+                                                                                   style="width: 40px"/>
+																		</span>
+                                                            </li>
+
+                                                            <!-- next page-->
+                                                            <li>
+                                                                <a>
+                                                                    <i class="ace-icon fa fa-caret-right bigger-140 middle"
+                                                                       onclick="pageChange(2)"></i>
+                                                                </a>
+                                                            </li>
+                                                            <!-- end page-->
+                                                            <li>
+                                                                <a>
+                                                                    <i class="ace-icon fa fa-step-forward middle"
+                                                                       onclick="pageChange(3)"></i>
+                                                                </a>
+                                                            </li>
+                                                            <!-- currentPage -->
+                                                            <input type="hidden" id="currentPage" value="1"/>
+                                                            <input type="hidden" id="totalPage" value="1"/>
+                                                        </ul>
+                                                    </div>
+
+
+                                                </div>
+
+                                                <div class="hide message-footer message-footer-style2 clearfix">
+                                                    <div class="pull-left"> simpler footer </div>
+
+                                                    <div class="pull-right">
+                                                        <div class="inline middle"> message 1 of 151 </div>
+
+                                                        &nbsp; &nbsp;
+                                                        <ul class="pagination middle">
+                                                            <li class="disabled">
+                                                                <span>
+                                                                    <i class="ace-icon fa fa-angle-left bigger-150"></i>
+                                                                </span>
+                                                            </li>
+
+                                                            <li>
+                                                                <a href="#">
+                                                                    <i class="ace-icon fa fa-angle-right bigger-150"></i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!-- /.tab-content -->
+                                </div><!-- /.tabbable -->
+                            </div><!-- /.col -->
+                        </div><!-- /.row -->
+
+
+                        <!-- /.message-content -->
+
+                        <!-- PAGE CONTENT ENDS -->
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.page-content -->
+        </div>
+    </div><!-- /.main-content -->
+
+    <div class="footer">
+        <div class="footer-inner">
+            <div class="footer-content">
+						<span class="bigger-120">
+							<span class="blue bolder">c.c.</span>
+							网站 &copy; 2020-2021
+						</span>
+                &nbsp; &nbsp;
+            </div>
+        </div>
+    </div>
+
+    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+        <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+    </a>
+</div><!-- /.main-container -->
+
+
+
+</body>
+</html>
+
