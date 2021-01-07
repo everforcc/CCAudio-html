@@ -1,4 +1,6 @@
 
+接收数据全部修改为json,随后吧请求头提取出来
+
 Browsers:
 - 用户登陆页  login.html
 - 管理员登陆页 back.html

@@ -188,7 +188,7 @@
 							</li>
 
 							<li class="next" onclick="fastPlay()" >
-								<a>快进</a>
+								<!--<a>快进</a>-->
 							</li>
 							<li class="next">
 								<a href="#">下一首 →</a>
@@ -517,35 +517,22 @@
 
 	    <script>
 
-
-
-            // 监听回车
-            $(document).keyup(function(event){
-                /*if(event.keyCode ==13){
-                    alert("search:"+$("#search").val());
-                }*/
-                //alert("search:"+ event.keyCode);
-            });
-
-			// 想做快进，但是没有成功
-			function fastPlay() {
+			/*function fastPlay() {
                  $(".controls__slider").focus();
 
                  var e = jQuery.Event("keyup"); //模拟一个键盘事件
-                 /*e.keyCode = 39;
+                 /!*e.keyCode = 39;
                  $(".controls__slider").trigger(e);
-                 $(".controls__slider").trigger(e);*/
+                 $(".controls__slider").trigger(e);*!/
 
                  // 搜索提交事件
-                 /*e.keyCode = 13;
-                 $('#search').focus().trigger(e);*/
+                 /!*e.keyCode = 13;
+                 $('#search').focus().trigger(e);*!/
                 e.keyCode = 13;
                 $(".play-pause-btn").button.trigger(e);
-            }
+            }*/
 
-
-
-            /* 视频播放支持 */
+            /* audio */
             //new GreenAudioPlayer('.gap-example');
             var audio = GreenAudioPlayer.init({
                 selector: '.gap-example', // inits Green Audio Player on each audio container that has class "player"
@@ -554,11 +541,6 @@
                 enableKeystrokes: true,
                 showTooltips: true
             });
-			//alert("tsee:"+localStorage.getItem("token"));
-            // 最后请求这个太慢了
-
-
-
 
 		</script>
 	</body>

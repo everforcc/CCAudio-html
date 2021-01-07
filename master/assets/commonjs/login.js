@@ -16,7 +16,7 @@ $("#login").click(function () {
         success: function (objReturn) {
             // alert(objReturn.data.token);
             localStorage.setItem("token",objReturn.data.token);
-            localStorage.setItem("name",userName);
+            localStorage.setItem("name",objReturn.data.name);
             window.location.href = "master/music.html";
         },
         error: function (objReturn) {

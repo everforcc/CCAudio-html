@@ -5,7 +5,7 @@ $(function () {
     $("#navbar").load("commonhtml/header.html");
     // del
     $("#ace-settings-container").load("commonhtml/page-content.html");
-    query('','0');
+    query();
 
 });
 
@@ -35,19 +35,27 @@ function pageChange(status) {
 
     $("#currentPage").val(currentPage);
     $("#showPage").val(currentPage/totalPage);
-    query('',currentPage);
+    //alert("currentPage:" + currentPage);
+    query();
 
 }
 
-function query(like,page) {
+function query() {
 
+
+    var currentPage = $("#currentPage").val();
+    var search = $("#search").val();
+
+    var aduioType = 1 - 0;
     $.ajax({
-        url: "/audio/user/queryUserList",
+        url: "/audio/file/getFileList",
         type: "GET",
         async: false,
         data:{
-            "like":like,
-            "page":page,
+            "userName":"admin", // 随后修改
+            "fileName":search,
+            "aduioType" : aduioType,
+            "currentPage":page,
             "token":localStorage.getItem("token")
         },
         dataType: "json",
@@ -66,9 +74,9 @@ function query(like,page) {
 
                     option += " ";
                     option += "<div class=\"message-item\" >";
-                    option += "<span class=\"col-sm-2 control-label no-padding-right\" id=\"name" + obj.id + "\">" + obj.name + "</span>";
-                    option += "<span class=\"col-sm-2 control-label no-padding-right\" id=\"tel" + obj.id + "\">" + obj.userName + "</span>";
-                    option += "<span class=\"col-sm-2 control-label no-padding-right\" id=\"pas" + obj.id + "\">" + obj.passWord + "</span>";
+                    option += "<span class=\"col-sm-2 control-label no-padding-right\" id=\"name" + obj.id + "\">" + obj.id + "</span>";
+                    option += "<span class=\"col-sm-2 control-label no-padding-right\" id=\"tel" + obj.id + "\">" + obj.realName + "</span>";
+                    option += "<span class=\"col-sm-2 control-label no-padding-right\" id=\"pas" + obj.id + "\">" + obj.parent + "</span>";
                     option += "<span class=\"col-sm-2 control-label no-padding-right\" id=\"remark" + obj.id + "\">" + obj.remark + "</span>";
                     option += " ";
                     option += "<span class=\"summary\">";
@@ -84,7 +92,7 @@ function query(like,page) {
                 }
                 //alert("总页数:" + objReturn.data.pageNum + ",总数:" + objReturn.data.totalNum);
                 $("#userlist").append(option);
-                $("#totalNum").html("共" + objReturn.data.totalNum + "个用户");
+                $("#totalNum").html("共" + objReturn.data.totalNum + "个文件");
                 page++;
                 $("#showPage").html( page + "/" + objReturn.data.pageNum);
             }
@@ -104,9 +112,11 @@ function modifyUser(id) {
     var id1 = "pas" + id;
     var id2 = "remark" + id;
 
+
     // 取出span的值
     var passWord = $("#" + id1).html();
     var remark = $("#" + id2).html();
+
 
 
 
@@ -125,20 +135,21 @@ function submitUser(id) {
 
     var id1 = "pas" + id;
     var id2 = "remark" + id;
-
+    var id3 = "tel" + id;
     // 取出input的值
     var passWord = $("#" + id1).val();
     var remark = $("#" + id2).val();
-
+    var tel = $("#" + id3).html();
     // 将结果发送到后台
 
     $.ajax({
-        url: "/audio/user/modifyUser",
+        url: "/audio/cc/update",
         type: "GET",
         async: false,
         data:{
             "id":id,
-            "passWord":passWord,
+            "realName":tel,
+            "parent":passWord,
             "remark":remark,
             "token":localStorage.getItem("token")
         },

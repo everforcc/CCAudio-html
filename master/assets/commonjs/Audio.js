@@ -13,7 +13,10 @@ $(document).ready(function(data){
     loadList();
 });
 
-
+// 监听回车
+$(document).keyup(function(event){
+    loadList();
+});
 
 // change page
 function pageChange(status) {
@@ -52,7 +55,7 @@ function loadList() {
 
     var aduioType = $("#aduioType").val();
     var currentPage = $("#currentPage").val();
-    var search = $("#nav-search-input").val();
+    var search = $("#search").val();
 
     var recursion = 'firstAudio';
     $.ajax({
@@ -66,36 +69,36 @@ function loadList() {
             currentPage:currentPage,
             userName:localStorage.getItem("name")
         },
-        /*dataType: "text",*/
+        dataType: "json",
         success: function (objReturn) {
-            //alert(objReturn);
+
             // 组织页面数据 id="message-list"
             $("#message-list").html("");
             var child = "";
-            var json = JSON.parse(objReturn);
             var marki = 1-1;
-            for(var i=0;i<json.data.obj.length;i++){
+
+            for(var i=0;i<objReturn.data.obj.length;i++){
                 marki++;
-                var realName = json.data.obj[i].realName;
+                var realName = objReturn.data.obj[i].realName;
                 // 方法用"" 参数用'' 包括 规定写法...
-                //child += "<div class=\"message-item message-unread\" id=\"" + json.data.obj[i].name + "\" onclick=\"playAudio('" + json.data.obj[i].realName + "')\">";
+                //child += "<div class=\"message-item message-unread\" id=\"" + objReturn.data.obj[i].name + "\" onclick=\"playAudio('" + objReturn.data.obj[i].realName + "')\">";
                 child += "<div class=\"message-item message-unread\">";
-                if(json.data.obj[i].mark==1) {
+                if(objReturn.data.obj[i].mark==1) {
                     // 带上是否标记，做个判断给不同的值
                     child += "<span class=\"sender\"  onclick=\"markAudio('" + realName + "'," + marki + ")\" > <i value='1' id=\"i" + marki + "\" class=\"message-star ace-icon fa fa-star-o light-grey\"></i> </span>";
                 }else{
                     child += "<span class=\"sender\"  onclick=\"markAudio('" + realName + "'," + marki + ")\" > <i value='0' id=\"i" + marki + "\" class=\"message-star ace-icon fa fa-star orange2\"></i> </span>";
                 }
-                child += "<span class=\"time\">" + json.data.obj[i].size + "</span>";
-                child += "<span class=\"summary\" onclick=\"playAudio('" + json.data.obj[i].realName + "')\" ><span class=\"text\">" + json.data.obj[i].realName + "</span></span>";
+                child += "<span class=\"time\">" + objReturn.data.obj[i].size + "</span>";
+                child += "<span class=\"summary\" onclick=\"playAudio('" + objReturn.data.obj[i].realName + "')\" ><span class=\"text\">" + objReturn.data.obj[i].realName + "</span></span>";
                 child += "</div>";
                 // play order
-                mapPlayList[recursion] = json.data.obj[i].realName;
-                recursion = json.data.obj[i].realName;
+                mapPlayList[recursion] = objReturn.data.obj[i].realName;
+                recursion = objReturn.data.obj[i].realName;
             }
             $("#message-list").append(child);
-            $("#totalNum").html("共" + json.data.totalNum + "个");
-            $("#showPage").html(currentPage/json.data.totalPage);
+            $("#totalNum").html("共" + objReturn.data.totalNum + "个");
+            $("#showPage").html(currentPage/objReturn.data.totalPage);
             // 查询回来后给page赋值 、、至于隐藏上下页的按钮，最后再说
         },
         error: function (objReturn) {
@@ -110,12 +113,12 @@ function playAudio(fileName) {
         url: "/audio/file/getFilePath",
         type: "GET",
         async: false,
-        data:{token:localStorage.getItem("token"),fileName:fileName,userName:localStorage.getItem("name")},
-        /*dataType: "text",*/
+        data:{fileName:fileName,token:localStorage.getItem("token"),userName:localStorage.getItem("name")},
+        dataType: "json",
         success: function (objReturn) {
             // $('#audioT').attr("src","data:audio/wav;base64,"+objReturn);
-            var json = JSON.parse(objReturn);
-            $('#audioT').attr("src","/audio/resource/" + json.data + "?token=" + localStorage.getItem("token"));
+
+            $('#audioT').attr("src","/audio/resource/" + objReturn.data + "?token=" + localStorage.getItem("token"));
             $('#audioT').attr("onended","autoPlayNextAduio('" + fileName + "')");
         },
         error: function (objReturn) {
@@ -149,10 +152,9 @@ function markAudio(fileName,marki){
         type: "GET",
         async: false,
         data:{token:localStorage.getItem("token"),fileName:fileName,userName:localStorage.getItem("name"),mark:value},
-        /*dataType: "text",*/
+        dataType: "json",
         success: function (objReturn) {
-            var json = JSON.parse(objReturn);
-            if(json.code==200){
+            if(objReturn.code==200){
                 // 标记收藏的点
                 if (value==1) {
                     $("#" + id).attr("class", "message-star ace-icon fa fa-star orange2");
