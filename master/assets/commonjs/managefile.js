@@ -42,9 +42,10 @@ function pageChange(status) {
 
 function query() {
 
-
     var currentPage = $("#currentPage").val();
     var search = $("#search").val();
+    // var page = $("#page").val();
+    var page = $("#currentPage").val() - 1 + 1;
 
     var aduioType = 1 - 0;
     $.ajax({
@@ -86,6 +87,14 @@ function query() {
                     option += "<button class=\"btn btn-xs btn-success\" onclick=\"submitUser('" + obj.id + "')\">";
                     option += "<i class=\"ace-icon fa fa-check bigger-120\"></i>";
                     option += "</button>";
+
+                    option += "<button class=\"btn btn-xs btn-danger\" onclick= \"deleteFile('" + obj.id + "')\" >" +
+                        "<i class=\"ace-icon fa fa-bolt bigger-110\"></i>\n" +
+                        "" +
+                        "删除" +
+                        //"<i class=\"ace-icon fa fa-arrow-right icon-on-right\"></i>\n" +
+                        "</button>";
+
                     option += "</span>";
                     option += " ";
                     option += "</div>";
@@ -95,6 +104,12 @@ function query() {
                 $("#totalNum").html("共" + objReturn.data.totalNum + "个文件");
                 page++;
                 $("#showPage").html( page + "/" + objReturn.data.pageNum);
+            }else{
+                /*alert("else");*/
+                $("#userlist").html("");
+                $("#totalNum").html("共0个文件");
+                page++;
+                $("#showPage").html("0");
             }
         },
         error: function (objReturn) {
@@ -108,17 +123,12 @@ function query() {
 function modifyUser(id) {
 
     // 1.屏蔽当前按钮
-
     var id1 = "pas" + id;
     var id2 = "remark" + id;
-
 
     // 取出span的值
     var passWord = $("#" + id1).html();
     var remark = $("#" + id2).html();
-
-
-
 
     // 修改input的值
     // <input type="text" class="col-sm-1 control-label no-padding-right" class="sender"  id=""  value="用户名"/>
@@ -167,7 +177,49 @@ function submitUser(id) {
             alert("系统故障,请联系管理员");
         }
     });
+}
 
+function deleteFile(id){
+// 取出两个值，提交
+    // 然后再修改为span
+    // <span class="col-sm-2 control-label no-padding-right" id="pas1">pas </span>
+    // <span class="col-sm-2 control-label no-padding-right" id=""></span>
 
+    var id1 = "pas" + id;
+    var id2 = "remark" + id;
+    var id3 = "tel" + id;
+    // 取出input的值
+    var passWord = $("#" + id1).val();
+    var remark = $("#" + id2).val();
+    var tel = $("#" + id3).html();
+    // 将结果发送到后台
 
+    $.ajax({
+        url: "/audio/cc/delete",
+        type: "GET",
+        async: false,
+        data:{
+            "id":id,
+            "realName":tel,
+            // "parent":passWord,
+            // "remark":remark,
+            "token":localStorage.getItem("token")
+        },
+        dataType: "json",
+        success: function (objReturn) {
+            if(objReturn.code == "200"){
+                // 修改span的值
+                // <input type="text" class="col-sm-1 control-label no-padding-right" class="sender"  id=""  value="用户名"/>
+                /*$("#" + id1).replaceWith("<span class=\"col-sm-2 control-label no-padding-right\" id=\"" + id1 + "\">" + passWord + "</span>");
+                $("#" + id2 ).replaceWith("<span class=\"col-sm-2 control-label no-padding-right\" id=\"" + id2 + "\">" + remark + "</span>");*/
+
+                // 删除成功后，重新查询一次
+                query();
+            }
+        },
+        error: function (objReturn) {
+            // 跳转后台给我发邮件
+            alert("系统故障,请联系管理员");
+        }
+    });
 }

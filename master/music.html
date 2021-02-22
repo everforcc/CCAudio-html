@@ -77,77 +77,22 @@
 
 			<div class="main-content">
 				<div class="main-content-inner">
-
+					<br>
+					<br>
+					<div class="page-header">
+						<h1>
+							<a id="header-index" onclick="showType('cc-parent')" style="display: none;">首页</a>
+							<small>
+								<i class="ace-icon fa fa-angle-double-right"></i>
+								<a id="header-dir" onclick="showType('cc-dir')" style="display: none;">分类</a>
+							</small>
+						</h1>
+					</div>
 
 					<div class="page-content">
-						<div class="ace-settings-container" id="ace-settings-container">
-							<div class="btn btn-app btn-xs btn-warning ace-settings-btn" id="ace-settings-btn">
-								<i class="ace-icon fa fa-cog bigger-130"></i>
-							</div>
+						<!-- /.ace-settings-container -->
 
-							<div class="ace-settings-box clearfix" id="ace-settings-box">
-								<div class="pull-left width-50">
-									<div class="ace-settings-item">
-										<div class="pull-left">
-											<select id="skin-colorpicker" class="hide">
-												<option data-skin="no-skin" value="#438EB9">#438EB9</option>
-												<option data-skin="skin-1" value="#222A2D">#222A2D</option>
-												<option data-skin="skin-2" value="#C6487E">#C6487E</option>
-												<option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option>
-											</select>
-										</div>
-										<span>&nbsp; Choose Skin</span>
-									</div>
-
-									<div class="ace-settings-item">
-										<input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-navbar" autocomplete="off" />
-										<label class="lbl" for="ace-settings-navbar"> Fixed Navbar</label>
-									</div>
-
-									<div class="ace-settings-item">
-										<input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-sidebar" autocomplete="off" />
-										<label class="lbl" for="ace-settings-sidebar"> Fixed Sidebar</label>
-									</div>
-
-									<div class="ace-settings-item">
-										<input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-breadcrumbs" autocomplete="off" />
-										<label class="lbl" for="ace-settings-breadcrumbs"> Fixed Breadcrumbs</label>
-									</div>
-
-									<div class="ace-settings-item">
-										<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-rtl" autocomplete="off" />
-										<label class="lbl" for="ace-settings-rtl"> Right To Left (rtl)</label>
-									</div>
-
-									<div class="ace-settings-item">
-										<input type="checkbox" class="ace ace-checkbox-2 ace-save-state" id="ace-settings-add-container" autocomplete="off" />
-										<label class="lbl" for="ace-settings-add-container">
-											Inside
-											<b>.container</b>
-										</label>
-									</div>
-								</div><!-- /.pull-left -->
-
-								<div class="pull-left width-50">
-									<div class="ace-settings-item">
-										<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-hover" autocomplete="off" />
-										<label class="lbl" for="ace-settings-hover"> Submenu on Hover</label>
-									</div>
-
-									<div class="ace-settings-item">
-										<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-compact" autocomplete="off" />
-										<label class="lbl" for="ace-settings-compact"> Compact Sidebar</label>
-									</div>
-
-									<div class="ace-settings-item">
-										<input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-highlight" autocomplete="off" />
-										<label class="lbl" for="ace-settings-highlight"> Alt. Active Item</label>
-									</div>
-								</div><!-- /.pull-left -->
-							</div><!-- /.ace-settings-box -->
-						</div><!-- /.ace-settings-container -->
-
-						<div class="page-header">
+						<!--<div class="page-header">
 							<ul class="pager">
 								<li class="previous" onclick="testbtn('上一首')">
 									<a href="#">← 上一首</a>
@@ -168,302 +113,296 @@
 								</small>
 							</h1>
 
-						</div><!-- /.page-header -->
-						<h1>
+						</div>--><!-- /.page-header -->
+						<!--<h1>
 							正在播放:
 							<small>
 								<i class="ace-icon fa fa-angle-double-right"></i>
 								音频名字
 							</small>
-						</h1>
-						<div class="gap-example" style="width: auto">
-							<audio id="audioT" onended="autoPlayNextAduio(2)">
+						</h1>-->
 
-							</audio>
+						<!-- 头部 -->
+						<div id="cc-parent">
+
+							<div class="col-xs-12" style="text-align: center;">
+
+								<img>
+								<br>
+								<br>
+								<button class="btn btn-warning btn-xlg" onclick="parentType('parent')">家长听</button>
+								<br>
+								<br>
+								<button class="btn btn-warning btn-xlg" onclick="parentType('child')">儿童听</button>
+
+							</div>
+
 						</div>
 
-						<ul class="pager">
-							<li class="previous" onclick="testbtn('上一首')">
-								<a href="#">← 上一首</a>
-							</li>
+						<!-- 音频播放区域 -->
+						<div id="cc-play" style="display: none;">
 
-							<li class="next" onclick="fastPlay()" >
-								<!--<a>快进</a>-->
-							</li>
-							<li class="next">
-								<a href="#">下一首 →</a>
-							</li>
-						</ul>
+							<div>
+								正在播放:<h4 id="nowPlay"></h4>
+							</div>
+                            <br>
+							<br>
+							<div class="gap-example" style="width: auto">
+								<audio id="audioT" onended="autoPlayNextAduio(2)">
 
-						<div style="height: 15px"></div>
-						<div class="row">
-							<div class="col-xs-12">
-								<!-- PAGE CONTENT BEGINS -->
-								<div class="row">
-									<div class="col-xs-12">
-										<div class="tabbable">
+								</audio>
+							</div>
+							<br>
+							<br>
+							<ul class="pager" style="text-align: center">
+								<!--<li class="previous" onclick="testbtn('上一首')">
+									<a href="#">← 上一首</a>
+								</li>
 
-											<ul id="inbox-tabs" class="inbox-tabs nav nav-tabs padding-16 tab-size-bigger tab-space-1">
-												<!--<li class="li-new-mail pull-right">
-													<a data-toggle="tab" href="#write" data-target="write" class="btn-new-mail">
-														<span class="btn btn-purple no-border">
-															<i class="ace-icon fa fa-envelope bigger-130"></i>
-															<span class="bigger-110">建议</span>
-														</span>
-													</a>
-												</li>--><!-- /.li-new-mail -->
+								<li class="next" onclick="controlPlay('pause')" >
+									<a>暂停</a>
+								</li>
+								<li class="next" onclick="controlPlay('next')">
+									<a href="#">下一首 →</a>
+								</li>-->
 
-												<li class="active" onclick="aduioType(1)">
-													<a data-toggle="tab" href="#inbox" data-target="inbox">
-														<!--<i class="blue ace-icon fa fa-inbox bigger-130"></i>-->
-														<span class="bigger-110">列表</span>
-													</a>
-												</li>
 
-												<li onclick="aduioType(2)">
-													<a data-toggle="tab" href="#sent" data-target="sent">
-														<!--<i class="orange ace-icon fa fa-location-arrow bigger-130"></i>-->
-														<span class="bigger-110">收藏</span>
-													</a>
-												</li>
+								<li class="paginate_button previous disabled" style="text-align: left" onclick="controlPlay('previous')">
+									<a href="#">上一首</a>
+								</li>
 
-												<li onclick="aduioType(3)">
-													<a data-toggle="tab" href="#draft" data-target="draft">
-														<!--<i class="green ace-icon fa fa-pencil bigger-130"></i>-->
-														<span class="bigger-110">历史</span>
-													</a>
-												</li>
-                                                <input type="hidden" id="aduioType" value="1"/>
-												<!--<li class="dropdown">
-													<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-														<i class="pink ace-icon fa fa-tags bigger-130"></i>
+								&nbsp;&nbsp;&nbsp;&nbsp;
 
-														<span class="bigger-110">
-															Tags
-															<i class="ace-icon fa fa-caret-down"></i>
-														</span>
-													</a>
+								<li class="paginate_button previous disabled" style="text-align: center" onclick="controlPlay('pause')">
+									<a href="#">暂停</a>
+								</li>
 
-													<ul class="dropdown-menu dropdown-light-blue dropdown-125">
-														<li>
-															<a data-toggle="tab" href="#tag-1">
-																<span class="mail-tag badge badge-pink"></span>
-																<span class="pink">Tag#1</span>
-															</a>
-														</li>
+								&nbsp;&nbsp;&nbsp;&nbsp;
 
-														<li>
-															<a data-toggle="tab" href="#tag-family">
-																<span class="mail-tag badge badge-success"></span>
-																<span class="green">Family</span>
-															</a>
-														</li>
+								<li class="paginate_button previous disabled" style="text-align: right" onclick="controlPlay('next')">
+									<a href="#">下一首</a>
+								</li>
 
-														<li>
-															<a data-toggle="tab" href="#tag-friends">
-																<span class="mail-tag badge badge-info"></span>
-																<span class="blue">Friends</span>
-															</a>
-														</li>
 
-														<li>
-															<a data-toggle="tab" href="#tag-work">
-																<span class="mail-tag badge badge-grey"></span>
-																<span class="grey">Work</span>
-															</a>
-														</li>
-													</ul>
-												</li>--><!-- /.dropdown -->
-											</ul>
+							</ul>
+						</div>
+						<!-- dir区域 -->
+						<div id="cc-dir" style="display: none;">
+							<div style="height: 15px"></div>
+							<div class="row">
+								<div class="col-xs-12">
+									<!-- PAGE CONTENT BEGINS -->
+									<div class="row">
+										<div class="col-xs-12">
+											<div class="tabbable">
 
-											<div class="tab-content no-border no-padding">
-												<div id="inbox" class="tab-pane in active">
-													<div class="message-container">
-														<div id="id-message-list-navbar" class="message-navbar clearfix">
-															<div class="message-bar">
-																<div class="message-infobar" id="id-message-infobar">
-																	<span class="blue bigger-150">标题</span>
-																	<span class="grey bigger-110">(返回信息)</span>
+												<ul id="inbox-tabs" class="inbox-tabs nav nav-tabs padding-16 tab-size-bigger tab-space-1">
+													<!--<li class="li-new-mail pull-right">
+														<a data-toggle="tab" href="#write" data-target="write" class="btn-new-mail">
+															<span class="btn btn-purple no-border">
+																<i class="ace-icon fa fa-envelope bigger-130"></i>
+																<span class="bigger-110">建议</span>
+															</span>
+														</a>
+													</li>--><!-- /.li-new-mail -->
+
+													<!-- 分类 -->
+
+													<li class="active" onclick="aduioType(1)">
+														<a data-toggle="tab" href="#inbox" data-target="inbox">
+															<!--<i class="blue ace-icon fa fa-inbox bigger-130"></i>-->
+															<span class="bigger-110">列表</span>
+														</a>
+													</li>
+
+													<li onclick="aduioType(2)">
+														<a data-toggle="tab" href="#sent" data-target="sent">
+															<!--<i class="orange ace-icon fa fa-location-arrow bigger-130"></i>-->
+															<span class="bigger-110">收藏</span>
+														</a>
+													</li>
+
+													<li onclick="aduioType(3)">
+														<a data-toggle="tab" href="#draft" data-target="draft">
+															<!--<i class="green ace-icon fa fa-pencil bigger-130"></i>-->
+															<span class="bigger-110">历史</span>
+														</a>
+													</li>
+													<input type="hidden" id="aduioType" value="1"/>
+
+												</ul>
+
+												<div class="tab-content no-border no-padding">
+													<div id="inbox" class="tab-pane in active">
+														<div class="message-container">
+															<div id="id-message-list-navbar" class="message-navbar clearfix">
+																<div class="message-bar">
+																	<!--<div class="message-infobar" id="id-message-infobar">
+																		<span class="blue bigger-150">标题</span>
+																		<span class="grey bigger-110">(返回信息)</span>
+																	</div>-->
+
 																</div>
 
-															</div>
-
-															<div>
+																<div>
 
 
-																<div class="messagebar-item-right">
-																	<div class="inline position-relative">
-																		<a href="#" data-toggle="dropdown" class="dropdown-toggle">
-																			排序 &nbsp;
-																			<i class="ace-icon fa fa-caret-down bigger-125"></i>
-																		</a>
+																	<!--<div class="messagebar-item-right">
+																		<div class="inline position-relative">
+																			<a href="#" data-toggle="dropdown" class="dropdown-toggle">
+																				排序 &nbsp;
+																				<i class="ace-icon fa fa-caret-down bigger-125"></i>
+																			</a>
 
-																		<ul class="dropdown-menu dropdown-lighter dropdown-menu-right dropdown-100">
-																			<li>
-																				<a href="#">
-																					<i class="ace-icon fa fa-check green"></i>
-																					最新
-																				</a>
-																			</li>
+																			<ul class="dropdown-menu dropdown-lighter dropdown-menu-right dropdown-100">
+																				<li>
+																					<a href="#">
+																						<i class="ace-icon fa fa-check green"></i>
+																						最新
+																					</a>
+																				</li>
 
-																			<li>
-																				<a href="#">
-																					<i class="ace-icon fa fa-check invisible"></i>
-																					最热
-																				</a>
-																			</li>
+																				<li>
+																					<a href="#">
+																						<i class="ace-icon fa fa-check invisible"></i>
+																						最热
+																					</a>
+																				</li>
 
-																			<li>
-																				<a href="#">
-																					<i class="ace-icon fa fa-check invisible"></i>
-																					别的分类
-																				</a>
-																			</li>
-																		</ul>
+																				<li>
+																					<a href="#">
+																						<i class="ace-icon fa fa-check invisible"></i>
+																						别的分类
+																					</a>
+																				</li>
+																			</ul>
+																		</div>
+																	</div>-->
+
+																	<div class="nav-search minimized">
+																		<!--<form class="form-search">-->
+																			<span class="input-icon">
+																				<input type="text" id="search" autocomplete="off" class="input-small nav-search-input" placeholder="搜索" />
+																				<i class="ace-icon fa fa-search nav-search-icon"></i>
+																			</span>
+																		<!--</form>-->
 																	</div>
 																</div>
+															</div>
 
-																<div class="nav-search minimized">
-																	<!--<form class="form-search">-->
-																		<span class="input-icon">
-																			<input type="text" id="search" autocomplete="off" class="input-small nav-search-input" placeholder="搜索" />
-																			<i class="ace-icon fa fa-search nav-search-icon"></i>
+
+
+
+
+															<div class="message-list-container">
+																<div class="message-list" id="message-list">
+																	<div class="message-item message-unread" onclick="playVideo()">
+																		<!--<label class="inline">
+																			<input type="checkbox" class="ace" />
+																			<span class="lbl"></span>
+																		</label>-->
+
+																		<!--<i class="message-star ace-icon fa fa-star orange2"></i>-->
+																		<span class="sender" title="Alex John Red Smith">音频名</span>
+																		<span class="time">时长</span>
+
+																		<span class="summary">
+																			<span class="text">
+																				播放
+																			</span>
 																		</span>
-																	<!--</form>-->
+																	</div>
+
+																	<div class="message-item">
+																		<!--<label class="inline">
+																			<input type="checkbox" class="ace" />
+																			<span class="lbl"></span>
+																		</label>-->
+
+																		<!--<i class="message-star ace-icon fa fa-star-o light-grey"></i>-->
+																		<span class="sender" title="Yahoo!">音频二 </span>
+																		<span class="time">时长</span>
+
+																		<span class="summary">
+																			<span class="message-flags">
+																				<i class="ace-icon fa fa-mail-forward light-grey"></i>
+																			</span>
+																			<span class="text">
+																				播放
+																			</span>
+																		</span>
+																	</div>
 																</div>
 															</div>
-														</div>
 
+															<!-- 分页控制 -->
 
+															<div class="message-footer clearfix">
+																<div class="pull-left" id="totalNum">共123个</div>
 
+																<div class="pull-right">
+																	<div class="inline middle" id="showPage">  1 / 16 </div>
 
+																	&nbsp; &nbsp;
+																	<ul class="pagination middle">
+																		<!-- first page -->
+																		<!--<li class="disabled">-->
+																		<li>
+																			<a>
+																				<i class="ace-icon fa fa-step-backward middle" onclick="pageChange(0)"></i>
+																			</a>
+																		</li>
 
-														<div class="message-list-container">
-															<div class="message-list" id="message-list">
-																<div class="message-item message-unread" onclick="playVideo()">
-																	<!--<label class="inline">
-																		<input type="checkbox" class="ace" />
-																		<span class="lbl"></span>
-																	</label>-->
+																		<!-- previous page -->
+																		<li>
+																			<a>
+																				<i class="ace-icon fa fa-caret-left bigger-140 middle" onclick="pageChange(1)"></i>
+																			</a>
+																		</li>
 
-																	<!--<i class="message-star ace-icon fa fa-star orange2"></i>-->
-																	<span class="sender" title="Alex John Red Smith">音频名</span>
-																	<span class="time">时长</span>
+																		<!-- user input -->
+																		<li>
+																			<span>
+																				<input value="1" maxlength="3" type="number" style="width: 40px"  />
+																			</span>
+																		</li>
 
-																	<span class="summary">
-																		<span class="text">
-																			播放
-																		</span>
-																	</span>
+																		<!-- next page-->
+																		<li>
+																			<a>
+																				<i class="ace-icon fa fa-caret-right bigger-140 middle" onclick="pageChange(2)"></i>
+																			</a>
+																		</li>
+																		<!-- end page-->
+																		<li>
+																			<a>
+																				<i class="ace-icon fa fa-step-forward middle" onclick="pageChange(3)"></i>
+																			</a>
+																		</li>
+																		<!-- currentPage -->
+																		<input type="hidden" id="currentPage" value="1" />
+																		<input type="hidden" id="totalPage" value="1" />
+																	</ul>
 																</div>
-
-																<div class="message-item">
-																	<!--<label class="inline">
-																		<input type="checkbox" class="ace" />
-																		<span class="lbl"></span>
-																	</label>-->
-
-																	<!--<i class="message-star ace-icon fa fa-star-o light-grey"></i>-->
-																	<span class="sender" title="Yahoo!">音频二 </span>
-																	<span class="time">时长</span>
-
-																	<span class="summary">
-																		<span class="message-flags">
-																			<i class="ace-icon fa fa-mail-forward light-grey"></i>
-																		</span>
-																		<span class="text">
-																			播放
-																		</span>
-																	</span>
-																</div>
 															</div>
+
 														</div>
-
-														<div class="message-footer clearfix">
-															<div class="pull-left" id="totalNum">共123个</div>
-
-															<div class="pull-right">
-																<div class="inline middle" id="showPage">  1 / 16 </div>
-
-																&nbsp; &nbsp;
-																<ul class="pagination middle">
-																	<!-- first page -->
-																	<!--<li class="disabled">-->
-																	<li>
-																		<a>
-																			<i class="ace-icon fa fa-step-backward middle" onclick="pageChange(0)"></i>
-																		</a>
-																	</li>
-
-																	<!-- previous page -->
-																	<li>
-																		<a>
-																			<i class="ace-icon fa fa-caret-left bigger-140 middle" onclick="pageChange(1)"></i>
-																		</a>
-																	</li>
-
-																	<!-- user input -->
-																	<li>
-																		<span>
-																			<input value="1" maxlength="3" type="number" style="width: 40px"  />
-																		</span>
-																	</li>
-
-																	<!-- next page-->
-																	<li>
-																		<a>
-																			<i class="ace-icon fa fa-caret-right bigger-140 middle" onclick="pageChange(2)"></i>
-																		</a>
-																	</li>
-																	<!-- end page-->
-																	<li>
-																		<a>
-																			<i class="ace-icon fa fa-step-forward middle" onclick="pageChange(3)"></i>
-																		</a>
-																	</li>
-																	<!-- currentPage -->
-																	<input type="hidden" id="currentPage" value="1" />
-																	<input type="hidden" id="totalPage" value="1" />
-																</ul>
-															</div>
-														</div>
-
-														<!--<div class="hide message-footer message-footer-style2 clearfix">
-															<div class="pull-left"> simpler footer </div>
-
-															<div class="pull-right">
-																<div class="inline middle"> message 1 of 151 </div>
-
-																&nbsp; &nbsp;
-																<ul class="pagination middle">
-																	<li class="disabled">
-																		<span>
-																			<i class="ace-icon fa fa-angle-left bigger-150"></i>
-																		</span>
-																	</li>
-
-																	<li>
-																		<a href="#">
-																			<i class="ace-icon fa fa-angle-right bigger-150"></i>
-																		</a>
-																	</li>
-																</ul>
-															</div>
-														</div>-->
 													</div>
-												</div>
-											</div><!-- /.tab-content -->
-										</div><!-- /.tabbable -->
-									</div><!-- /.col -->
-								</div><!-- /.row -->
+												</div><!-- /.tab-content -->
+											</div><!-- /.tabbable -->
+										</div><!-- /.col -->
+									</div><!-- /.row -->
 
 
 
-								<!-- /.message-content -->
+									<!-- /.message-content -->
 
-								<!-- PAGE CONTENT ENDS -->
-							</div><!-- /.col -->
-						</div><!-- /.row -->
+									<!-- PAGE CONTENT ENDS -->
+								</div><!-- /.col -->
+							</div><!-- /.row -->
+						</div>
+						<!-- dir区域 -->
+
 					</div><!-- /.page-content -->
 				</div>
 			</div><!-- /.main-content -->
@@ -532,6 +471,7 @@
                 $(".play-pause-btn").button.trigger(e);
             }*/
 
+			/* 初始化音频界面 */
             /* audio */
             //new GreenAudioPlayer('.gap-example');
             var audio = GreenAudioPlayer.init({
